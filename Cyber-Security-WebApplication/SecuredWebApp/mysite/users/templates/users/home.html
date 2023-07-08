@@ -1,0 +1,77 @@
+<html>
+
+<head>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <style>
+    body {
+      color: rgb(22, 17, 128);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'users:home' %}">Communications_LTD</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'users:customers' %}">Customers</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <div class="white-color hover-orange size-24px">
+                <span>{{ user }}</span>
+                <i class="fas fa-user"></i>
+              </div>
+            </a>
+            {% if user.is_authenticated %}
+            <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+            </div>
+            {%endif%}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+
+  <h1>Hello, {{ user.username|default:'Guest' }}</h1>
+
+  <p> Welcome to Communications_LTD</p>
+  <div>
+    {% if user.is_authenticated %}
+    <!-- XSS vulnerability -->
+    <p> Good Seeing you, {{user.first_name | safe}}.</p>
+    <!-- <a href="{% url 'password_change' %}">Change password?</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'users:customers' %}">Add new customer</a> -->
+
+
+    {% else %}
+    <a class="btn btn-secondary" href="{% url 'signup' %}">Sign Up</a>
+    <a class="btn btn-primary" href="{% url 'users:login' %}">Log In</a> 
+    <!-- <a href="{% url 'signup' %}">Sign Up</a>
+    <a href="{% url 'login' %}">Login</a> -->
+    {% endif %}
+  </div>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

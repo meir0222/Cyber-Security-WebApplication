@@ -1,0 +1,22 @@
+<table id="customersTable" class="table table-bordered">
+    <thead class="table-secondary">
+      <tr>
+        <th>Customer ID</th>
+        <th>Name</th>
+        <th>Email</th>     
+        <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+      <tr>
+        <td>{{ customer.cust_id }}</td>
+        <!-- XSS vun -->
+        <td>{{ customer.cust_name | safe }}</td>
+        <td>{{ customer.cust_email  }}</td>
+        <td>{{ customer.cust_contact }}</td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

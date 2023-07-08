@@ -1,0 +1,18 @@
+#installations needed to work
+# django-bootstrap-v5
+# django-axes
+# django_advanced_password_validation
+# django-password-history
+# django-password-validators
+# django-password-policies
+# choco
+# django
+# django-tinymce
+# fontawesomefree
+# django-crispy-forms
+# django-recaptcha
+# pillow
+# six
+#Werkzeug
+#environ
+#pyopenssl

@@ -1,0 +1,115 @@
+{% extends "users/base.html" %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h3 class="mt-4 text-center">Customers</h3>
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div style="width:50%;" class="input-group">
+        <input id="searchBox" type="text" class="form-control"
+        placeholder="Search Customer">
+        <button class="btn btn-outline-secondary" type="button" id="searchCustomer">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="float-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#addCustomerModal">
+          <i class="fas fa-plus"></i>
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="searchOutput">
+    <table id="customersTable" class="table table-bordered">
+      <thead class="table-secondary">
+        <tr>
+          <th>Customer ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for customer in customers %}
+        <tr>
+          <td>{{ customer.cust_id }}</td>
+          <td>{{ customer.cust_name }}</td>
+          <td>{{ customer.cust_email }}</td>
+          <td>{{ customer.cust_contact }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add Customer Modal -->
+  <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLable"
+   aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+              <input style="width:100%;" name="cust_id" type="text"
+              class="form-control mb-2" placeholder="Customer ID" required>
+
+              <input style="width:100%;" name="cust_name" type="text"
+              class="form-control mb-2" placeholder="Name" required>
+
+              <input style="width:100%;" name="cust_email" type="text"
+              class="form-control mb-2" placeholder="Email" required>
+
+              <input style="width:100%;" name="cust_contact" type="text"
+              class="form-control mb-2" placeholder="Contact" required>
+
+            </div>
+
+            <button class="btn btn-primary" type="submit" name="button">Save</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- JS Function to Search Customer -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(document).on("click","#searchCustomer",function() {
+      let searchTerm = $("#searchBox").val();
+
+      $.ajax({
+          type: "POST",
+          url: "{% url 'users:search_customers' %}",
+          data: {'searchTerm':searchTerm},
+          success: function(response){
+            $('#searchOutput').html(response);
+          }
+      });
+
+    });
+  });
+</script>
+
+
+{% endblock %}
