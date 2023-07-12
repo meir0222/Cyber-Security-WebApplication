@@ -1,14 +1,14 @@
 # Cyber-Security-WebApplication
 This project focuses on creating a robust authentication system using the Django framework. The objective is to develop a secure web application by deliberately introducing vulnerabilities, such as SQL injection and cross-site scripting (XSS), and then applying secure development principles to mitigate these vulnerabilities.
 
-# Features
+## Features
 
 * Authentication System: The application includes a secure authentication system that allows users to register, log in, and manage their accounts.
 * Deliberate Vulnerability Implementation: The web application deliberately introduces vulnerabilities, such as SQL injection and cross-site scripting (XSS), to simulate real-world security risks and demonstrate the importance of secure development.
 * Secure Development Practices: The project emphasizes the application of secure development principles to mitigate vulnerabilities. It includes input validation, output encoding, secure session management, and the use of secure hashing algorithms(HMAC) with salt to protect user passwords.
 * TLS 1.2 Implementation: The application is configured to use TLS 1.2 to enable HTTPS on localhost.
 
-# Getting Started
+## Getting Started
 Prerequisites
 
   * Python 3.x
@@ -51,6 +51,6 @@ Usage:
     Explore the application and access different features to test the secure development practices and vulnerability mitigation.
     Note: Some files have been removed from the repository for safety purposes, so the code may not fully work as expected.
 
-# Acknowledgments
+## Acknowledgments
 
 This project was developed to showcase the importance of secure development practices in web applications. It combines authentication, deliberate vulnerability implementation, and secure development principles to provide a comprehensive learning experience in the field of cyber security.
