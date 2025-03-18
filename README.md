@@ -1,4 +1,4 @@
-# Cyber-Security-WebApplication
+# Cyber Security WebApplication
 This project focuses on creating a robust authentication system using the Django framework. The objective is to develop a secure web application by deliberately introducing vulnerabilities, such as SQL injection and cross-site scripting (XSS), and then applying secure development principles to mitigate these vulnerabilities.
 
 ## Features
